@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="directory_zipcode" resource="default" engine="innodb" comment="Zipcode">
+      <column xsi:type="int" name="zipcode_id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID" />
+	  <column xsi:type="varchar" name="country_id" nullable="true" length="10" comment="country_id"/>
+	  <column xsi:type="int" name="region_id" unsigned="true" nullable="false" identity="false" default="0" comment="region ID"/>
+	  <column xsi:type="varchar" name="region" nullable="true" length="220" comment="region"/>
+	  <column xsi:type="varchar" name="city" nullable="true" length="220" comment="City"/>
+	  <column xsi:type="varchar" name="zipcode" nullable="true" length="10" comment="Zipcode"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="zipcode_id" />
+      </constraint>
+   </table>
+</schema>

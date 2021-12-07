@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<form action="<?= $block->escapeUrl($block->getUrl("*/*/saveimport")) ?>" method="post" id="import_zipcodes_form" enctype="multipart/form-data">
+    <?= $block->getBlockHtml('formkey') ?>
+	 <fieldset class="admin__fieldset form-list">
+		<div class="admin__field field _required">
+			<label class="admin__field-label">
+				<span><?= $block->escapeHtml(__('Select File to Import')) ?></span>
+			</label>
+			<div class="admin__field-control">
+				<input type="file" id="import_file" name="import_file"  class="admin__control-text required-file" value="" />
+				<p><a href="<?= $block->escapeUrl($block->getUrl("*/*/download")) ?>"> <?= $block->escapeHtml(__('Download Sample File')) ?></a></p>
+			</div>
+		</div>
+		
+		<div class="admin__field field">
+			<label class="admin__field-label">
+				<span></span>
+			</label>
+			<div class="admin__field-control">
+				<input type="submit" id="import_button" name="import_button" class="admin__control-button primary" value="<?= $block->escapeHtml(__('Import')) ?>" />
+				<a href="<?= $block->escapeUrl($block->getUrl("*/*/index")) ?>"> <input type="button" id="import_button_back" name="import_button_back" class="admin__control-button primary" value="<?= $block->escapeHtml(__('Back')) ?>"> </a>
+			</div>
+			
+		</div>
+	</fieldset>
+</form>
+

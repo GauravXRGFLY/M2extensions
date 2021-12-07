@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+   <menu>
+       <add id="Zipcode_Backend::menu" title="Directory Zipcode" module="Flyxrg_ValidateZipcode" sortOrder="60" resource="Magento_Backend::content" />
+       <add id="Zipcode_Backend::zipcode_directory" title="Zipcode Directory" module="Flyxrg_ValidateZipcode" sortOrder="1" parent="Zipcode_Backend::menu" action="zipcode/directory/index" resource="Zipcode_Backend::zipcode_directory" />	   
+   </menu>
+</config>

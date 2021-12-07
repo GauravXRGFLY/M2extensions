@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">zipcode_directory_form.zipcode_directory_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Zipcode Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save_and_continue" class="Flyxrg\ValidateZipcode\Block\Adminhtml\Zipcode\Edit\SaveAndContinueButton" />
+            <button name="save" class="Flyxrg\ValidateZipcode\Block\Adminhtml\Zipcode\Edit\SaveButton" />
+            <button name="delete" class="Flyxrg\ValidateZipcode\Block\Adminhtml\Zipcode\Edit\DeleteButton" />
+            <button name="back" class="Flyxrg\ValidateZipcode\Block\Adminhtml\Zipcode\Edit\BackButton" />
+        </buttons>
+        <namespace>zipcode_directory_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>zipcode_directory_form.zipcode_directory_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="zipcode_directory_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="zipcode/directory/save"/>
+        </settings>
+        <dataProvider class="Flyxrg\ValidateZipcode\Model\Zipcode\DataProvider" name="zipcode_directory_form_data_source">
+            <settings>
+                <requestFieldName>zipcode_id</requestFieldName>
+                <primaryFieldName>zipcode_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="zipcode_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Zipcode</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>zipcode_id</dataScope>
+            </settings>
+        </field>
+		<field name="country_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Directory\Model\Config\Source\Country</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Country</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">Timeslot</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/country</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+		<field name="region">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">State/Region</item>
+					<item name="formElement" xsi:type="string">input</item>
+					<item name="source" xsi:type="string">store</item>
+					<item name="sortOrder" xsi:type="number">15</item>
+					<item name="visible" xsi:type="boolean">false</item>
+				</item>
+			</argument>
+		</field>
+		<field name="region_id">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Magento\Directory\Model\ResourceModel\Region\Collection</item>
+				<item name="config" xsi:type="array">
+					<item name="dataType" xsi:type="string">text</item>
+					<item name="label" xsi:type="string" translate="true">State/Region</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="source" xsi:type="string">store</item>
+					<item name="sortOrder" xsi:type="number">20</item>
+					<item name="customEntry" xsi:type="string">region</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+					<item name="filterBy" xsi:type="array">
+						<item name="target" xsi:type="string">${ $.provider }:${ $.parentScope }.country_id</item>
+						<item name="field" xsi:type="string">country_id</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+        <field name="city" sortOrder="100" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">City</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="zipcode" component="Magento_Ui/js/form/element/post-code" sortOrder="120" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Zipcode</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+</form>

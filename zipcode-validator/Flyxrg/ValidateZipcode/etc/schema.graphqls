@@ -1,0 +1,13 @@
+type Query {
+    zipcodeData (
+        zipcode: String @doc(description: "zipcode of the directory")
+    ): ZipcodeData @resolver(class: "Flyxrg\\ValidateZipcode\\Model\\Resolver\\ZipcodeData") @doc(description: "The zipcode query returns information about a city region")
+}
+
+type ZipcodeData @doc(description: "Zipcode graphql gather Data of city region country") {
+    zipcode_id: Int @doc(description: "PK Id of zipcode")
+    country_id: String @doc(description: "country id")
+    region_id: String @doc(description: "region id")
+    city : String @doc(description: "city")
+    zipcode : String @doc(description: "zipcode")
+}
