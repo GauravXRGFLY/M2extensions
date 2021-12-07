@@ -1,2 +1,4 @@
 # M2extensions
-Magento extensions give you an edge and help drive
+Magento extensions for your magento store. Cheers!!! 
+
+#GauRavXRGFLY
